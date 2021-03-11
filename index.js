@@ -747,7 +747,21 @@ if (text.includes("placa"))
 					var gbl36 = gh7.split("|")[2];
 					anu = await fetchJson(`https://api.vhtear.com/harijadian?tgl=${gbl16}&bln=${gbl26}&thn=${gbl36}&apikey={BELI APIKEY BIAR WORK DI 0816546638}`, {method: 'get'})
 					reply(anu.result.hasil)
-					break
+				case 'roletarussa':
+                if (!isGroupMsg) return client.reply(from, msgs_texto.permissao.grupo, id)
+                if (!isGroupAdmins) return client.reply(from, msgs_texto.permissao.apenas_admin , id)
+                if (!isBotGroupAdmins) return client.reply(from,msgs_texto.permissao.bot_admin, id)
+                let membros_id = await client.getGroupMembersId(groupId)
+                membros_id.splice(membros_id.indexOf(groupOwner),1)
+                membros_id.splice(membros_id.indexOf(botNumber+'@c.us'),1)
+                let membro_id_index = Math.floor(Math.random() * membros_id.length)
+                let roleta_resposta = preencherTexto(msgs_texto.diversao.roletarussa.resposta,membros_id[membro_id_index].replace(/@c.us/g, ''))
+                client.reply(from, msgs_texto.diversao.roletarussa.espera , id).then(()=>{
+                    client.sendTextWithMentions(from, roleta_resposta).then(()=>{
+                        client.removeParticipant(groupId, membros_id[membro_id_index])
+                    })
+                })
+                    break
                    case 'modapk':
                     if (!isPremium) return reply(mess.only.premium)
                     client.sendMessage(from, modapk(prefix), text, { quoted: mek })
