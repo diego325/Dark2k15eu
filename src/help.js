@@ -95,7 +95,7 @@ const help = (prefix) => {
 ║🌻 *${prefix}canal*
 ║🌵 *${prefix}nsfwloli1*
 ║🌻 *${prefix}reislin*
-║
+║🌻 *${prefix}blowjob*
 ╠══✪〘 INTELIGÊNCIA 〙✪══
 ║
 ║🌻 *${prefix}simih 1 (para ativar)*
